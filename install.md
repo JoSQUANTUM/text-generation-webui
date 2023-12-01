@@ -1,3 +1,5 @@
+### It is highly recommended checking the official webpage 
+
 ### The below setup is to run LLMs from the command line.
 
 First, verify if you are pushing to BDR. If you do, then you need to remove from the `~/.gitconfig`
@@ -98,7 +100,104 @@ as a model loader select `llama.cpp`, `n-gpu-layers = 1` and `n_ctx = 7168` (thi
 
 For bigger models like this https://huggingface.co/TheBloke/CodeLlama-13B-Instruct-GGUF, I think I have a memory issue.
 
-### The other thing I am doing is to test different modeds on https://lmstudio.ai/
+## Below are the instructions for the installation on Linux server with NVIDIA GPUs and usage. The best models have to be run using GPUs, unfortunately. Running them on CPUs is very slow. 
 
-## Instructions for the installation and usage using the GPU server
+### Installation
+
+0. You need to install first the CUDA driver following this [link](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html).
+
+1. Install Miniforge if you haven't done it previously. It is more frequently updated that 
+Miniconda nowadays.  
+
+* Check for the architecture (most of the time it is x86_64). Run  
+
+```bash
+uname -a
+```
+
+for it. If you see `x86_64` than your CPU architecture is `x86_64` :) 
+
+Next install it. 
+
+```bash
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge-pypy3-Linux-x86_64.sh
+bash Miniforge-pypy3-Linux-x86_64.sh
+```
+
+Follow this [link](https://github.com/conda-forge/miniforge) for more detailed instructions.
+
+2. 
+
+```bash
+conda create -n textgen python=3.11
+conda activate textgen
+```
+
+Before proceeding double check if you're using python and pip of the activated `textgen` environment. Run `which python` and `which pip` to check it.
+
+3. 
+
+Install Pytorch in an activated environment. 
+
+```bash
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
+
+and the CUDA runtime libraries:
+
+```bash
+conda install -y -c "nvidia/label/cuda-12.1.0" cuda-runtime
+```
+
+4. Install the web UI
+
+```bash
+git clone https://github.com/oobabooga/text-generation-webui
+cd text-generation-webui
+```
+
+Check if your CPU supports the AVX2 instruction by running:
+
+```bash
+lscpu | grep -i avx2
+```
+
+If the output includes `avx2` somewhere that you have the support and run:
+
+```bash
+pip install -r requirements.txt
+```
+
+Otherwise, run:
+
+```bash
+pip install -r requirements_noavx2.txt
+```
+
+### Usage
+
+In case you already have everything installed.
+
+1. Setup an ssh connection configuration like so:  
+
+```bash
+Host gpuserver
+    HostName 51.68.167.118
+    User ubuntu
+    IdentityFile ~/.ssh/your_private_key
+    Port 22
+```
+
+2. In the Terminal, connect to the server using port forwarding like this:
+
+```bash
+ssh -L 7861:127.0.0.1:7860 gpuserver
+```
+
+so that you can use it locally at `http://127.0.0.1:7860/`
+
+You would need to modify `7860` port if it is busy locally and on the server.
+
+After that 
+
 
