@@ -1,14 +1,21 @@
 ### The Importance of Using Large Language Models (LLMs) Locally
 
-In today's digital age, language models have become an integral part of many businesses and organizations. These models are trained on vast amounts of data to generate human-like text, which can be used for a variety of purposes such as chatbots, language translation, content creation, and more. However, it is crucial that we consider the importance of using large language models (LLMs) locally, rather than relying on third-party servers.
+In today's digital age, language models have become an integral part of many businesses and organizations. These models are trained on vast amounts of data to generate human-like text, which can be used for a variety of purposes such as chatbots, language translation, content creation, and more. However, it is crucial that we consider the importance of using large language models (LLMs) locally, rather than relying on third-party servers. By keeping LLMs local, businesses can ensure that their client data remains confidential and secure, which is essential for maintaining trust and complying with regulations.
 
 ### Data Privacy and Security
 
 One of the primary reasons why businesses should use LLMs locally is to maintain data privacy and security. When using third-party servers, there is always a risk of data breaches or unauthorized access to sensitive information. This is particularly concerning for organizations that work with confidential client data, such as healthcare providers, financial institutions, and legal firms. By running LLMs locally, businesses can ensure that their client data remains confidential and secure, which is essential for maintaining trust and complying with regulations.
 
+At JoS-QUANTUM, we utilize [Llama 2](https://huggingface.co/TheBloke/Llama-2-70B-Chat-GGML)  models developed by Meta both for internal purposes and for customer data analysis. We recognize the importance of maintaining data privacy and security, especially when working with sensitive information. To address this concern, we run our LLMs locally on our private servers or on local machines.
+
+![schema](schema.png)
+
 ### Faster Processing Times
 
-Another advantage of using LLMs locally is faster processing times. When working with large datasets, transmitting data to third-party servers can take a significant amount of time, leading to delays in processing and response times. By running LLMs locally, businesses can process data instantly, without the need for external servers. This is particularly important for applications that require real-time processing, such as chatbots or voice assistants.
+Another advantage of using LLMs locally is faster processing times. When working with large datasets, transmitting data to third-party servers can take a significant amount of time, leading to delays in processing and response times. By running LLMs locally, businesses can process data instantly, without the need for external servers. This is particularly important for applications that require real-time processing, such as chatbots or voice assistants. 
+We use the following [WebUI](https://github.com/oobabooga/text-generation-webui) for the communication with LLMs.
+
+![webui](webui.png)
 
 ### Customization and Flexibility
 
